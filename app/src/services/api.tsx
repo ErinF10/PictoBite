@@ -111,9 +111,9 @@ const Api: React.FC = () => {
       localStorage.setItem("foodItems", JSON.stringify([dateAnalysis]));
     } else {
       let arr = JSON.parse(localStorage.getItem("foodItems") || "[]");
-      const findFood = arr.find(
-        (item: any) => item.description === dateAnalysis.analysis?.description
-      );
+    //   const findFood = arr.find(
+    //     (item: any) => item.description === dateAnalysis.analysis?.description
+    //   );
       arr.push(dateAnalysis);
       localStorage.setItem("foodItems", JSON.stringify(arr));
     }
