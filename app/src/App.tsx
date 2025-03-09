@@ -116,6 +116,7 @@ function App() {
           <Route path="/diet" element={<PersonalizedNutrition />} />
         </Routes>
       </Box>
+
     </>
   );
 }
