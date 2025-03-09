@@ -36,6 +36,17 @@ function LinkTab(props: LinkTabProps) {
         }
       }}
       aria-current={props.selected && 'page'}
+      sx={{
+        color: '#ffffff !important', // Force white color
+        fontSize: '1rem',
+        fontWeight: 500,
+        '&:hover': {
+          color: '#ffd700 !important', // Force gold color on hover
+        },
+        '&.Mui-selected': {
+          color: '#ffd700 !important', // Force gold color when selected
+        }
+      }}
       {...props}
     />
   );
@@ -58,12 +69,22 @@ export default function NavTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ 
+      width: '100%', 
+      bgcolor: '#1976d2', // Material UI's primary blue
+      padding: '8px',
+      marginBottom: '16px'
+    }}>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label="nav tabs example"
         role="navigation"
+        sx={{
+          '& .MuiTabs-indicator': {
+            backgroundColor: '#ffd700', // gold underline
+          }
+        }}
       >
         <LinkTab label="Home" href="/" />
         <LinkTab label="Diet Plan" href="/diet" />
