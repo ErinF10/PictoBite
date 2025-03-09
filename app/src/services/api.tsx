@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './api.css';
 
 interface FoodAnalysis {
     calories: number;
@@ -93,24 +94,45 @@ const Api: React.FC = () => {
     return (
         <div className="container">
             <h1>Food Analysis App</h1>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-            {image && <img src={image} alt="Food" className="food-image" />}
-            
-            {loading && <p>Analyzing...</p>}
-            {error && <p className="error">{error}</p>}
+                <div className='functionality-container'>  
 
-            {analysis && (
-                <div className="analysis">
-                    <p>Description: {analysis.description}</p>
-                    <p>Calories: {analysis.calories}</p>
-                    <div>
-                    <p>Protein: {analysis.nutrients.protein}</p>
-                    <p>Carbs: {analysis.nutrients.carbs}</p>
-                    <p>Fat: {analysis.nutrients.fat}</p>
-                    <p>Sugar: {analysis.nutrients.sugar}</p>
-                </div>
+                    <div className="image-container">
+                        {image ? (
+                            <img src={image} alt="Food" className="food-image" />
+                        ) : (
+                            <div className="placeholder">No image selected</div>
+                        )}
+                    </div>   
+
+                    <label className="custom-file-upload">
+                        Choose File
+                        <input type="file" accept="image/*" onChange={handleImageUpload} />
+                    </label>     
+
+                    {loading && <p>Analyzing...</p>}
+                    {error && <p className="error">{error}</p>}
+
+                    <div className='analysis-container'>
+
+                        {analysis ? (
+                            <div className="analysis">
+                                <p>Description: {analysis.description}</p>
+                                <p>Calories: {analysis.calories}</p>
+                                <div>
+                                <p>Protein: {analysis.nutrients.protein}</p>
+                                <p>Carbs: {analysis.nutrients.carbs}</p>
+                                <p>Fat: {analysis.nutrients.fat}</p>
+                                <p>Sugar: {analysis.nutrients.sugar}</p>
+                            </div>
+                        </div>
+                        ) : (
+                            <div className="analysis-placeholder">Upload or take a photo to analyze</div>
+                        )
+                    }
+                    </div>
+
             </div>
-            )}
+
         </div>
     );
 };
