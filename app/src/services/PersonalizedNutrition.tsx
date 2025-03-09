@@ -14,8 +14,7 @@ const PersonalizedNutrition: React.FC = () => {
     const [fat, setFat] = React.useState<number | null>(null);
     const [sugar, setSugar] = React.useState<number | null>(null);
     const [isLoading, setIsLoading] = React.useState(false);
-
-    const [isHovered, setIsHovered] = React.useState(false); // Track hover state for button
+    const [isHovered, setIsHovered] = React.useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -49,37 +48,116 @@ const PersonalizedNutrition: React.FC = () => {
     };
 
     return (
-        <main style={{ maxWidth: '800px', margin: 'auto', padding: '20px' }}>
-            <Typography level="h1" sx={{ mb: 3, textAlign: 'center' }}>
+        <main style={{ 
+            maxWidth: '1000px', 
+            margin: 'auto', 
+            padding: 'clamp(1rem, 3vw, 2rem)',
+            animation: 'fadeIn 0.8s ease-out'
+        }}>
+            <Typography 
+                level="h1" 
+                sx={{ 
+                    mb: 4,
+                    textAlign: 'center',
+                    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+                    position: 'relative',
+                    '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        bottom: '-10px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '60px',
+                        height: '3px',
+                        background: '#DA325D',
+                        borderRadius: '2px'
+                    }
+                }}
+            >
                 Personalized Nutrition
             </Typography>
 
-            <Card variant="outlined" sx={{ mb: 4, p: 3 }}>
+            <Card 
+                variant="outlined" 
+                sx={{ 
+                    mb: 4,
+                    p: { xs: 2, sm: 3 },
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    '&:hover': {
+                        transform: 'translateY(-5px)',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                    }
+                }}
+            >
                 <CardContent>
-                    <Typography level="h2" sx={{ mb: 3, textAlign: 'center' }}>
+                    <Typography 
+                        level="h2" 
+                        sx={{ 
+                            mb: 3,
+                            textAlign: 'center',
+                            fontSize: 'clamp(1.4rem, 3vw, 1.8rem)'
+                        }}
+                    >
                         Enter Your Details
                     </Typography>
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Stack spacing={2} sx={{ width: '100%', maxWidth: 400 }}>
-                            <Input name="height" type="number" placeholder="Enter height in cm" required />
-                            <Input name="weight" type="number" placeholder="Enter weight in kg" required />
-                            <Input name="age" type="number" placeholder="Enter age in years" required />
+                            <Input 
+                                name="height" 
+                                type="number" 
+                                placeholder="Enter height in cm" 
+                                required
+                                sx={{
+                                    transition: 'transform 0.2s ease',
+                                    '&:focus': {
+                                        transform: 'scale(1.02)'
+                                    }
+                                }}
+                            />
+                            <Input 
+                                name="weight" 
+                                type="number" 
+                                placeholder="Enter weight in kg" 
+                                required
+                                sx={{
+                                    transition: 'transform 0.2s ease',
+                                    '&:focus': {
+                                        transform: 'scale(1.02)'
+                                    }
+                                }}
+                            />
+                            <Input 
+                                name="age" 
+                                type="number" 
+                                placeholder="Enter age in years" 
+                                required
+                                sx={{
+                                    transition: 'transform 0.2s ease',
+                                    '&:focus': {
+                                        transform: 'scale(1.02)'
+                                    }
+                                }}
+                            />
                         </Stack>
                         <Button
                             type="submit"
                             loading={isLoading}
                             sx={{
-                                mt: 2,
+                                mt: 3,
                                 width: '100%',
                                 maxWidth: 400,
-                                backgroundColor: isHovered ? '#5dd284' : '#DA325D', // Dynamic color based on hover
-                                color: 'white', // Text color remains white
+                                backgroundColor: isHovered ? '#5dd284' : '#DA325D',
+                                color: 'white',
+                                fontSize: '1.1rem',
+                                py: 1.5,
+                                transition: 'all 0.3s ease',
                                 '&:hover': {
-                                    backgroundColor: '#5dd284', // Green color when hovered
-                                },
+                                    backgroundColor: '#5dd284',
+                                    transform: 'translateY(-2px)'
+                                }
                             }}
-                            onMouseEnter={() => setIsHovered(true)} // When mouse enters, button turns green
-                            onMouseLeave={() => setIsHovered(false)} // When mouse leaves, button turns red/pink
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
                         >
                             Calculate
                         </Button>
@@ -88,12 +166,45 @@ const PersonalizedNutrition: React.FC = () => {
             </Card>
 
             {calories && (
-                <Card variant="outlined" sx={{ mb: 4, p: 3 }}>
+                <Card 
+                    variant="outlined" 
+                    sx={{ 
+                        mb: 4,
+                        p: { xs: 2, sm: 3 },
+                        animation: 'slideIn 0.5s ease-out',
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        '&:hover': {
+                            transform: 'translateY(-5px)',
+                            boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                        }
+                    }}
+                >
                     <CardContent>
-                        <Typography level="h2" sx={{ mb: 2, textAlign: 'center' }}>
+                        <Typography 
+                            level="h2" 
+                            sx={{ 
+                                mb: 3,
+                                textAlign: 'center',
+                                fontSize: 'clamp(1.4rem, 3vw, 1.8rem)'
+                            }}
+                        >
                             Recommended Daily Intake
                         </Typography>
-                        <Stack spacing={1} sx={{ textAlign: 'center' }}>
+                        <Stack 
+                            spacing={2} 
+                            sx={{ 
+                                textAlign: 'center',
+                                '& .MuiTypography-root': {
+                                    p: 1.5,
+                                    borderRadius: 1,
+                                    backgroundColor: 'rgba(218, 50, 93, 0.1)',
+                                    transition: 'transform 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'translateX(5px)'
+                                    }
+                                }
+                            }}
+                        >
                             <Typography>Calories: {calories.toFixed(2)} kcal</Typography>
                             <Typography>Protein: {protein?.toFixed(2)} g</Typography>
                             <Typography>Carbs: {carbs?.toFixed(2)} g</Typography>
@@ -104,11 +215,22 @@ const PersonalizedNutrition: React.FC = () => {
                 </Card>
             )}
 
-            <Typography level="h2" sx={{ mb: 4, textAlign: 'center' }}>
+            <Typography 
+                level="h2" 
+                sx={{ 
+                    mb: 4,
+                    textAlign: 'center',
+                    fontSize: 'clamp(1.4rem, 3vw, 1.8rem)'
+                }}
+            >
                 General Nutrition Information
             </Typography>
 
-            <Grid container spacing={3} justifyContent="center">
+            <Grid 
+                container 
+                spacing={{ xs: 2, sm: 3 }} 
+                justifyContent="center"
+            >
                 {[
                     { title: 'Calories', text: 'Calories are a unit of energy that our body gets from food. The recommended daily intake varies based on age, gender, and activity level.' },
                     { title: 'Protein', text: 'Protein helps build and repair tissues. The recommended intake is around 0.8g per kg of body weight for the average adult.' },
@@ -117,17 +239,55 @@ const PersonalizedNutrition: React.FC = () => {
                     { title: 'Sugar', text: 'Sugar should be consumed in moderation. Excess intake can lead to health issues like obesity and diabetes.' },
                 ].map((item, index) => (
                     <Grid key={index} xs={12} sm={6} md={4}>
-                        <Card variant="outlined" sx={{ height: '100%', p: 2 }}>
+                        <Card 
+                            variant="outlined" 
+                            sx={{ 
+                                height: '100%',
+                                p: { xs: 2, sm: 2.5 },
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&:hover': {
+                                    transform: 'translateY(-5px)',
+                                    boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                                }
+                            }}
+                        >
                             <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2, textAlign: 'center' }}>
+                                <Typography 
+                                    level="title-lg" 
+                                    sx={{ 
+                                        mb: 2,
+                                        textAlign: 'center',
+                                        color: '#DA325D',
+                                        fontWeight: 600
+                                    }}
+                                >
                                     {item.title}
                                 </Typography>
-                                <Typography level="body-md">{item.text}</Typography>
+                                <Typography 
+                                    level="body-md"
+                                    sx={{
+                                        lineHeight: 1.6,
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    {item.text}
+                                </Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                 ))}
             </Grid>
+
+            <style>{`
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateX(-20px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+            `}</style>
         </main>
     );
 };

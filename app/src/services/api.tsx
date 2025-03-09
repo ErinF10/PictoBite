@@ -145,7 +145,6 @@ const Api: React.FC = () => {
                     {error && <p className="error">{error}</p>}
 
                     <div className='analysis-container'>
-
                         {analysis ? (
                             <div className="analysis">
                                 <p>Description: {analysis.description}</p>
@@ -159,12 +158,16 @@ const Api: React.FC = () => {
                             </div>
                         ) : (
                             loading ? (
-                                    <div>Analyzing...</div>
-                                ) : (
-                                    <div className="analysis-placeholder">Upload or take a photo to analyze</div>
-                                )
-                        )
-                    }
+                                <div className="analysis">
+                                    <div className="spinner" />
+                                    <div className="loading-text">Analyzing your food...</div>
+                                </div>
+                            ) : (
+                                <div className="analysis-placeholder">
+                                    Upload a food image to see nutritional analysis
+                                </div>
+                            )
+                        )}
                     </div>
 
             </div>
