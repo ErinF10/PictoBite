@@ -1,0 +1,83 @@
+h1 {
+    font-size: 100%;
+    line-height: 1.1;
+}
+
+.functionality-container {
+    background-color: white;
+    padding: 5%;
+    border-radius: 5px;
+    /* width: 300px;
+    height: 500px; */
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    box-shadow: 0px 5px 5px rgba(160, 160, 160, 0.227) ;
+
+}
+
+.image-container {
+    margin: 2%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures the image doesn’t overflow the container */
+}
+
+.placeholder {
+    /* background-color: #39bf66; */
+    color: rgb(84, 84, 84);
+    width: 350px;
+    height: 300px;
+    border: solid;
+    border-radius: 5px;
+    border-width: .5px;
+    border-color: #39bf66;
+    box-shadow: 0px 5px 5px #39bf66;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-image {
+    object-fit: cover; /* Ensures the image covers the container without distorting */
+    width: 100%; /* Make image take up 100% of the container's width */
+    height: 100%; /* Make image take up 100% of the container's height */
+}
+
+
+/* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+/* Style the custom file upload button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 5% 10%;
+    margin: 2%;
+    background-color: #DA325D; /* Green color */
+    color: white;
+
+    font-size: 90%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.custom-file-upload:hover {
+    background-color: #5dd284; /* Darker green */
+}
+
+.analysis-container {
+    background-color: #da325ca1;
+
+
+    padding: 5%;
+    margin: 2%;
+    border-radius: 5px;
+    font-size: 90%;
+    color:white;
+
+}
