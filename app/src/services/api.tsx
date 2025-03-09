@@ -161,7 +161,7 @@ const Api: React.FC = () => {
                             loading ? (
                                     <div>Analyzing...</div>
                                 ) : (
-                                    <div className="analysis-placeholder">Upload or take a photo to analyze</div>
+                                    <div className="analysis-placeholder">Food analysis will appear here after you upload!</div>
                                 )
                         )
                     }
