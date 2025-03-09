@@ -12,6 +12,7 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import MonitorWeightIcon from '@mui/icons-material/MonitorWeight';
 import { useNavigate } from 'react-router-dom';
 import "./App.css";
+import PersonalizedNutrition from "./services/PersonalizedNutrition";
 
 // Temporary placeholder component
 const DietPlanPlaceholder = () => (
@@ -112,7 +113,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Api />} />
           <Route path="/tracker" element={<Tracker />} />
-          <Route path="/diet" element={<DietPlanPlaceholder />} />
+          <Route path="/diet" element={<PersonalizedNutrition />} />
         </Routes>
       </Box>
     </>
