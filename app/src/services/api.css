@@ -48,19 +48,13 @@ p {
 /* Container for all functionalities */
 .functionality-container {
     background-color: white;
-    padding: clamp(1.5rem, 3vw, 3.5rem);
-    margin: clamp(1rem, 2vw, 2rem);
-    border-radius: 16px; /* Slightly rounded corners */
+    padding: clamp(1rem, 2vw, 2rem);
+    margin: clamp(0.5rem, 1.5vw, 1.5rem);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
-    font-weight: bold;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.1),
-        0 4px 8px rgba(0, 0, 0, 0.05);
-    gap: 25px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    gap: 20px;
     position: relative;
     overflow: hidden;
 }
@@ -71,15 +65,8 @@ p {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(90deg, #DA325D, #ff4778);
-}
-
-.functionality-container:hover {
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.15),
-        0 5px 10px rgba(0, 0, 0, 0.08);
-    transform: translateY(-5px);
 }
 
 /* Container for image and button */
@@ -87,34 +74,22 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
-    transition: all 0.3s ease;
 }
 
 /* Image container styling */
 .image-container {
-    width: clamp(220px, 80vw, 320px);
-    height: clamp(220px, 80vw, 320px);
-    border-radius: 16px;
+    width: clamp(180px, 70vw, 280px);
+    height: clamp(180px, 70vw, 280px);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border: 2px dashed #da325c70;
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    box-shadow: 
-        0 8px 16px rgba(0, 0, 0, 0.1),
-        0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.image-container:hover {
-    border: 2px dashed #DA325D; /* Change border color on hover */
-    transform: scale(1.02) translateY(-3px);
-    box-shadow: 
-        0 12px 24px rgba(0, 0, 0, 0.15),
-        0 6px 12px rgba(0, 0, 0, 0.1);
+    background: #f8f8f8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Placeholder for when no image is selected */
@@ -152,118 +127,98 @@ input[type="file"] {
 /* Custom file upload button */
 .custom-file-upload {
     display: inline-block;
-    padding: clamp(0.8rem, 2vw, 1rem) clamp(1.2rem, 3vw, 1.5rem);
+    padding: 0.8rem 1.2rem;
     background: linear-gradient(135deg, #DA325D, #ff4778);
     color: white;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     text-align: center;
-    width: clamp(200px, 85%, 300px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(218, 50, 93, 0.3);
-    position: relative;
-    overflow: hidden;
-    font-weight: 600;
-}
-
-.custom-file-upload:hover {
-    background: linear-gradient(135deg, #5dd284, #4fa36f);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(93, 210, 132, 0.4);
-}
-
-.custom-file-upload:active {
-    transform: translateY(1px);
+    width: clamp(160px, 70%, 240px);
+    box-shadow: 0 2px 8px rgba(218, 50, 93, 0.2);
+    font-weight: 500;
 }
 
 /* Analysis container */
 .analysis-container {
     background: linear-gradient(135deg, #da325c62, #ff477862);
-    border-radius: 16px;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    border-radius: 12px;
+    font-size: 1rem;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: clamp(1.2rem, 3vw, 2.2rem);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 
-        0 8px 20px rgba(218, 50, 93, 0.15),
-        0 4px 8px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-}
-
-.analysis-container:hover {
-    box-shadow: 
-        0 12px 28px rgba(218, 50, 93, 0.25),
-        0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(218, 50, 93, 0.12);
+    min-height: 260px;
 }
 
 .analysis {
     width: 100%;
-    animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
 }
 
 .analysis p {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    margin: 0;
+    padding: 0.8rem;
+    color: white;
+    background: rgba(218, 50, 93, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    letter-spacing: 0.3px;
     backdrop-filter: blur(4px);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.analysis p:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .analysis-placeholder {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 0.95rem;
     color: #ffffff;
     text-align: center;
     padding: 1rem;
-    animation: pulse 2s infinite;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
+/* Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+.loading-text {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    text-align: center;
+    color: #fff;
 }
 
 /* Responsive Design */
 @media (min-width: 758px) {
     .functionality-container {
         flex-direction: row;
-        justify-content: space-between;
         align-items: stretch;
-        gap: 35px;
-        padding: clamp(2rem, 4vw, 3.5rem);
+        gap: 25px;
     }
 
     .image-button-container {
-        width: 45%;
-        justify-content: center;
+        width: 42%;
     }
 
     .analysis-container {
-        width: 55%;
+        width: 58%;
         text-align: left;
-    }
-
-    .analysis p {
-        margin: 1.2rem 0;
     }
 }
 
@@ -276,8 +231,7 @@ input[type="file"] {
 }
 
 div:empty::before {
-    content: "Analyzing";
-    animation: analyzing 1.5s infinite;
+    display: none;
 }
 
 /* Error Message Styling */
@@ -296,4 +250,8 @@ div:empty::before {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
