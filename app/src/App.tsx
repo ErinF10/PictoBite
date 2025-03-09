@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import Api from './services/api'
-import './App.css'
+import { useState } from "react";
+import Api from "./services/api";
+import Tracker from "./services/tracker";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Api />
+      <Routes>
+        <Route path="/" element={<Api />} />
+        <Route path="/tracker" element={<Tracker />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
