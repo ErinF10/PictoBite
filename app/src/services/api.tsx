@@ -97,20 +97,21 @@ const Api: React.FC = () => {
             <p>Upload or take a photo of your food and we will provide calories and other nutritional details!</p>
 
                 <div className='functionality-container'>  
+                    <div className='image-button-container'>
+                        <div className="image-container">
+                            {image ? (
+                                <img src={image} alt="Food" className="food-image" />
+                            ) : (
+                                <div className="placeholder">No image selected</div>
+                            )}
+                        </div>   
 
-                    <div className="image-container">
-                        {image ? (
-                            <img src={image} alt="Food" className="food-image" />
-                        ) : (
-                            <div className="placeholder">No image selected</div>
-                        )}
-                    </div>   
-
-                    <label className="custom-file-upload">
-                        Upload Photo
-
-                        <input type="file" accept="image/*" onChange={handleImageUpload} />
-                    </label>     
+                        <label className="custom-file-upload">
+                            Upload Photo
+                            <input type="file" accept="image/*" onChange={handleImageUpload} />
+                        </label>   
+                    </div>
+  
 
                     {loading && <p>Analyzing...</p>}
                     {error && <p className="error">{error}</p>}
