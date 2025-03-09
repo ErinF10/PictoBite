@@ -15,6 +15,8 @@ const PersonalizedNutrition: React.FC = () => {
     const [sugar, setSugar] = React.useState<number | null>(null);
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const [isHovered, setIsHovered] = React.useState(false); // Track hover state for button
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
@@ -47,50 +49,51 @@ const PersonalizedNutrition: React.FC = () => {
     };
 
     return (
-        <main className="nutrition-container">
-            <header>
-                <Typography level="h1" sx={{ mb: 2 }}>Personalized Nutrition</Typography>
-            </header>
-            
-            <Card variant="outlined" sx={{ mb: 4 }}>
+        <main style={{ maxWidth: '800px', margin: 'auto', padding: '20px' }}>
+            <Typography level="h1" sx={{ mb: 3, textAlign: 'center' }}>
+                Personalized Nutrition
+            </Typography>
+
+            <Card variant="outlined" sx={{ mb: 4, p: 3 }}>
                 <CardContent>
-                    <Typography level="h2" sx={{ mb: 3 }}>Enter Your Details</Typography>
-                    <form onSubmit={handleSubmit}>
-                        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-                            <Input
-                                name="height"
-                                type="number"
-                                placeholder="Enter height in cm"
-                                required
-                            />
-                            <Input
-                                name="weight"
-                                type="number"
-                                placeholder="Enter weight in kg"
-                                required
-                            />
-                            <Input
-                                name="age"
-                                type="number"
-                                placeholder="Enter age in years"
-                                required
-                            />
-                            <Button 
-                                type="submit"
-                                loading={isLoading}
-                            >
-                                Calculate
-                            </Button>
+                    <Typography level="h2" sx={{ mb: 3, textAlign: 'center' }}>
+                        Enter Your Details
+                    </Typography>
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Stack spacing={2} sx={{ width: '100%', maxWidth: 400 }}>
+                            <Input name="height" type="number" placeholder="Enter height in cm" required />
+                            <Input name="weight" type="number" placeholder="Enter weight in kg" required />
+                            <Input name="age" type="number" placeholder="Enter age in years" required />
                         </Stack>
+                        <Button
+                            type="submit"
+                            loading={isLoading}
+                            sx={{
+                                mt: 2,
+                                width: '100%',
+                                maxWidth: 400,
+                                backgroundColor: isHovered ? '#5dd284' : '#DA325D', // Dynamic color based on hover
+                                color: 'white', // Text color remains white
+                                '&:hover': {
+                                    backgroundColor: '#5dd284', // Green color when hovered
+                                },
+                            }}
+                            onMouseEnter={() => setIsHovered(true)} // When mouse enters, button turns green
+                            onMouseLeave={() => setIsHovered(false)} // When mouse leaves, button turns red/pink
+                        >
+                            Calculate
+                        </Button>
                     </form>
                 </CardContent>
             </Card>
 
             {calories && (
-                <Card variant="outlined" sx={{ mb: 4 }}>
+                <Card variant="outlined" sx={{ mb: 4, p: 3 }}>
                     <CardContent>
-                        <Typography level="h2" sx={{ mb: 2 }}>Recommended Daily Intake</Typography>
-                        <Stack spacing={1}>
+                        <Typography level="h2" sx={{ mb: 2, textAlign: 'center' }}>
+                            Recommended Daily Intake
+                        </Typography>
+                        <Stack spacing={1} sx={{ textAlign: 'center' }}>
                             <Typography>Calories: {calories.toFixed(2)} kcal</Typography>
                             <Typography>Protein: {protein?.toFixed(2)} g</Typography>
                             <Typography>Carbs: {carbs?.toFixed(2)} g</Typography>
@@ -101,118 +104,30 @@ const PersonalizedNutrition: React.FC = () => {
                 </Card>
             )}
 
-            <section className="nutrition-info">
-                <Typography level="h2" sx={{ mb: 4 }}>General Nutrition Information</Typography>
-                <Grid 
-                    container 
-                    spacing={4} 
-                    sx={{ 
-                        flexGrow: 1,
-                        px: 2,
-                        gap: 2,
-                        justifyContent: 'center'
-                    }}
-                >
-                    {/* First row - 3 cards */}
-                    <Grid xs={12} sm={6} md={4}>
-                        <Card 
-                            variant="outlined" 
-                            sx={{ 
-                                height: '100%',
-                                mb: 2
-                            }}
-                        >
-                            <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2 }}>Calories</Typography>
-                                <Typography level="body-md">
-                                    Calories are a unit of energy that our body gets from food. The recommended
-                                    daily intake of calories varies based on age, gender, activity level, and other
-                                    factors. On average, adult women need around 2,000 calories per day, while adult men
-                                    need around 2,500 calories.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
+            <Typography level="h2" sx={{ mb: 4, textAlign: 'center' }}>
+                General Nutrition Information
+            </Typography>
 
-                    <Grid xs={12} sm={6} md={4}>
-                        <Card 
-                            variant="outlined" 
-                            sx={{ 
-                                height: '100%',
-                                mb: 2
-                            }}
-                        >
+            <Grid container spacing={3} justifyContent="center">
+                {[
+                    { title: 'Calories', text: 'Calories are a unit of energy that our body gets from food. The recommended daily intake varies based on age, gender, and activity level.' },
+                    { title: 'Protein', text: 'Protein helps build and repair tissues. The recommended intake is around 0.8g per kg of body weight for the average adult.' },
+                    { title: 'Carbs', text: 'Carbohydrates are the body\'s main energy source. Healthy carbs include whole grains, fruits, and vegetables.' },
+                    { title: 'Fat', text: 'Fat is essential for energy, cell function, and vitamin absorption. Healthy fats include those found in avocados, nuts, and olive oil.' },
+                    { title: 'Sugar', text: 'Sugar should be consumed in moderation. Excess intake can lead to health issues like obesity and diabetes.' },
+                ].map((item, index) => (
+                    <Grid key={index} item xs={12} sm={6} md={4}>
+                        <Card variant="outlined" sx={{ height: '100%', p: 2 }}>
                             <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2 }}>Protein</Typography>
-                                <Typography level="body-md">
-                                    Protein is an essential macronutrient that helps build and repair tissues, muscles, and
-                                    organs. The recommended daily intake of protein is around 0.8 grams per kilogram of body
-                                    weight for the average adult. Protein is found in meat, fish, eggs, dairy, and plant-based
-                                    sources like beans and lentils.
+                                <Typography level="title-lg" sx={{ mb: 2, textAlign: 'center' }}>
+                                    {item.title}
                                 </Typography>
+                                <Typography level="body-md">{item.text}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
-
-                    <Grid xs={12} sm={6} md={4}>
-                        <Card 
-                            variant="outlined" 
-                            sx={{ 
-                                height: '100%',
-                                mb: 2
-                            }}
-                        >
-                            <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2 }}>Carbs</Typography>
-                                <Typography level="body-md">
-                                    Carbohydrates are the body's main source of energy. They are broken down into glucose,
-                                    which fuels our brain and muscles. Healthy carbs include whole grains, fruits, and vegetables.
-                                    A healthy diet typically consists of 45-65% of calories from carbohydrates.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    {/* Second row - 2 cards */}
-                    <Grid xs={12} sm={6} md={4}>
-                        <Card 
-                            variant="outlined" 
-                            sx={{ 
-                                height: '100%',
-                                mb: 2
-                            }}
-                        >
-                            <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2 }}>Fat</Typography>
-                                <Typography level="body-md">
-                                    Fat is an essential nutrient that provides energy, supports cell function, and helps the
-                                    body absorb vitamins. Not all fats are bad – healthy fats like those found in avocados,
-                                    nuts, and olive oil are beneficial. Aim for fat to make up 20-35% of your total daily calories.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    <Grid xs={12} sm={6} md={4}>
-                        <Card 
-                            variant="outlined" 
-                            sx={{ 
-                                height: '100%',
-                                mb: 2
-                            }}
-                        >
-                            <CardContent>
-                                <Typography level="title-lg" sx={{ mb: 2 }}>Sugar</Typography>
-                                <Typography level="body-md">
-                                    Sugar provides energy but should be consumed in moderation. Excessive sugar intake can lead
-                                    to health problems like obesity and diabetes. The American Heart Association recommends
-                                    that women limit added sugars to 25 grams per day and men to 37.5 grams.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </section>
+                ))}
+            </Grid>
         </main>
     );
 };
