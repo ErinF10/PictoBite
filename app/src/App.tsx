@@ -31,7 +31,7 @@ function NavigationMenu() {
         top: 0,
         left: 0,
         right: 0,
-        bgcolor: '#CCD5AE',
+        bgcolor: '#196854',
         zIndex: 1000,
       }}
     >
