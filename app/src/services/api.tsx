@@ -72,12 +72,12 @@ const Api: React.FC = () => {
 
             const parsedAnalysis: FoodAnalysis = {
                 description: content.match(/Description:\s*(.+?)(?=\n|$)/i)?.[1] || '',
-                calories: parseInt(content.match(/Calories:\s*(\d+)/i)?.[1] || '0'),
+                calories: parseFloat(content.match(/Calories:\s*(\d+\.?\d*)/i)?.[1] || '0'),
                 nutrients: {
-                    protein: content.match(/Protein:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
-                    carbs: content.match(/Carbs:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
-                    fat: content.match(/Fat:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
-                    sugar: content.match(/Sugars:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',                
+                    protein: content.match(/Protein:\s*(\d+\.?\d*g)/i)?.[1] || 'N/A',
+                    carbs: content.match(/Carbs:\s*(\d+\.?\d*g)/i)?.[1] || 'N/A',
+                    fat: content.match(/Fat:\s*(\d+\.?\d*g)/i)?.[1] || 'N/A',
+                    sugar: content.match(/Sugars:\s*(\d+\.?\d*g)/i)?.[1] || 'N/A',                
                 }
             };
                         
