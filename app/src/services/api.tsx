@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-  
-interface OpenAIResponse {
-    choices: {
-        message: {
-            content: string;
-        };
-    }[];
-}
-
 interface FoodAnalysis {
     calories: number;
     description: string;
@@ -17,6 +8,7 @@ interface FoodAnalysis {
         protein?: string;
         carbs?: string;
         fat?: string;
+        sugar?: string;
     };
 }
 
@@ -30,12 +22,16 @@ const Api: React.FC = () => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => setImage(reader.result as string);
+            reader.onloadend = async () => {
+                const imageData = reader.result as string;
+                setImage(imageData);
+                await analyzeFood(imageData);
+            };
             reader.readAsDataURL(file);
         }
     };
 
-    const analyzeFood = async () => {
+    const analyzeFood = async (imageData: string) => {
         setLoading(true);
         setError(null);
         try {
@@ -44,7 +40,7 @@ const Api: React.FC = () => {
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a precise nutritionist specialized in analyzing food images. Provide accurate calorie estimates and nutritional information. Always respond in this exact format:\nDescription: [description]\nCalories: [number] calories\nProtein: [number]g\nCarbs: [number]g\nFat: [number]g'
+                        content: 'You are a precise nutritionist specialized in analyzing food images. Provide accurate calorie estimates and nutritional information. Always respond in this exact format:\nDescription: [description]\nCalories: [number] calories\nProtein: [number]g\nCarbs: [number]g\nFat: [number]g\nSugars: [number]'
                     },
                     {
                         role: 'user',
@@ -55,7 +51,7 @@ const Api: React.FC = () => {
                             },
                             {
                                 type: 'image_url',
-                                image_url: { url: image }
+                                image_url: { url: imageData }
                             }
                         ]
                     }
@@ -77,12 +73,13 @@ const Api: React.FC = () => {
                 description: content.match(/Description:\s*(.+?)(?=\n|$)/i)?.[1] || '',
                 calories: parseInt(content.match(/Calories:\s*(\d+)/i)?.[1] || '0'),
                 nutrients: {
-                    protein: content.match(/Protein:\s*([\d.]+g)/i)?.[1] || 'N/A',
-                    carbs: content.match(/Carbs:\s*([\d.]+g)/i)?.[1] || 'N/A',
-                    fat: content.match(/Fat:\s*([\d.]+g)/i)?.[1] || 'N/A'
+                    protein: content.match(/Protein:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
+                    carbs: content.match(/Carbs:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
+                    fat: content.match(/Fat:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',
+                    sugar: content.match(/Sugars:\s*(\d+(\.\d+)?g)/i)?.[1] || 'N/A',                
                 }
             };
-
+                        
             console.log('Parsed Analysis:', parsedAnalysis);
 
             setAnalysis(parsedAnalysis);
@@ -98,10 +95,8 @@ const Api: React.FC = () => {
             <h1>Food Analysis App</h1>
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             {image && <img src={image} alt="Food" className="food-image" />}
-            <button onClick={analyzeFood} disabled={!image || loading}>
-                {loading ? 'Analyzing...' : 'Analyze Food'}
-            </button>
-
+            
+            {loading && <p>Analyzing...</p>}
             {error && <p className="error">{error}</p>}
 
             {analysis && (
@@ -109,11 +104,12 @@ const Api: React.FC = () => {
                     <p>Description: {analysis.description}</p>
                     <p>Calories: {analysis.calories}</p>
                     <div>
-                        <p>Protein: {analysis.nutrients.protein}</p>
-                        <p>Carbs: {analysis.nutrients.carbs}</p>
-                        <p>Fat: {analysis.nutrients.fat}</p>
-                    </div>
+                    <p>Protein: {analysis.nutrients.protein}</p>
+                    <p>Carbs: {analysis.nutrients.carbs}</p>
+                    <p>Fat: {analysis.nutrients.fat}</p>
+                    <p>Sugar: {analysis.nutrients.sugar}</p>
                 </div>
+            </div>
             )}
         </div>
     );
