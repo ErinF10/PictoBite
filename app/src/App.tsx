@@ -1,7 +1,6 @@
 import Api from "./services/api";
 import Tracker from "./services/tracker";
 import { Routes, Route } from "react-router-dom";
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
