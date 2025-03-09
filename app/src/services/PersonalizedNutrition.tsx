@@ -116,7 +116,7 @@ const PersonalizedNutrition: React.FC = () => {
                     { title: 'Fat', text: 'Fat is essential for energy, cell function, and vitamin absorption. Healthy fats include those found in avocados, nuts, and olive oil.' },
                     { title: 'Sugar', text: 'Sugar should be consumed in moderation. Excess intake can lead to health issues like obesity and diabetes.' },
                 ].map((item, index) => (
-                    <Grid key={index} item xs={12} sm={6} md={4}>
+                    <Grid key={index} xs={12} sm={6} md={4}>
                         <Card variant="outlined" sx={{ height: '100%', p: 2 }}>
                             <CardContent>
                                 <Typography level="title-lg" sx={{ mb: 2, textAlign: 'center' }}>
