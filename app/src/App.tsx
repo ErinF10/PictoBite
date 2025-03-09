@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import Api from './services/api'
+import PersonalizedNutrition from './services/PersonalizedNutrition'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Api />
+      <PersonalizedNutrition />
     </>
   )
 }
