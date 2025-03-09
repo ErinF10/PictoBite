@@ -15,12 +15,12 @@ import "./App.css";
 import PersonalizedNutrition from "./services/PersonalizedNutrition";
 
 // Temporary placeholder component
-const DietPlanPlaceholder = () => (
-  <div className="placeholder">
-    <h2>Diet Plan Coming Soon!</h2>
-    <p>This feature is currently under development.</p>
-  </div>
-);
+// const DietPlanPlaceholder = () => (
+//   <div className="placeholder">
+//     <h2>Diet Plan Coming Soon!</h2>
+//     <p>This feature is currently under development.</p>
+//   </div>
+// );
 
 function NavigationMenu() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function NavigationMenu() {
         top: 0,
         left: 0,
         right: 0,
-        bgcolor: '#196854',
+        bgcolor: '#2CA081',
         zIndex: 1000,
       }}
     >

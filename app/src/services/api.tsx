@@ -121,7 +121,7 @@ const Api: React.FC = () => {
 
     return (
         <div className="container">
-            <h1>Food Analysis App</h1>
+            <h1>Welcome to PictoBite!</h1>
             <p>Upload or take a photo of your food and we will provide calories and other nutritional details!</p>
 
                 <div className='functionality-container'>  
