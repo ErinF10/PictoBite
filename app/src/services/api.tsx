@@ -121,7 +121,7 @@ const Api: React.FC = () => {
 
     return (
         <div className="container">
-            <h1>Food Analysis App</h1>
+            <h1>Welcome to PictoBite!</h1>
             <p>Upload or take a photo of your food and we will provide calories and other nutritional details!</p>
 
                 <div className='functionality-container'>  
@@ -141,7 +141,7 @@ const Api: React.FC = () => {
                     </div>
   
 
-                    {loading && <p>Analyzing...</p>}
+                    {/* {loading && <p>Analyzing...</p>} */}
                     {error && <p className="error">{error}</p>}
 
                     <div className='analysis-container'>
@@ -151,14 +151,18 @@ const Api: React.FC = () => {
                                 <p>Description: {analysis.description}</p>
                                 <p>Calories: {analysis.calories}</p>
                                 <div>
-                                <p>Protein: {analysis.nutrients.protein}</p>
-                                <p>Carbs: {analysis.nutrients.carbs}</p>
-                                <p>Fat: {analysis.nutrients.fat}</p>
-                                <p>Sugar: {analysis.nutrients.sugar}</p>
+                                    <p>Protein: {analysis.nutrients.protein}</p>
+                                    <p>Carbs: {analysis.nutrients.carbs}</p>
+                                    <p>Fat: {analysis.nutrients.fat}</p>
+                                    <p>Sugar: {analysis.nutrients.sugar}</p>
+                                </div>
                             </div>
-                        </div>
                         ) : (
-                            <div className="analysis-placeholder">Upload or take a photo to analyze</div>
+                            loading ? (
+                                    <div>Analyzing...</div>
+                                ) : (
+                                    <div className="analysis-placeholder">Upload or take a photo to analyze</div>
+                                )
                         )
                     }
                     </div>
