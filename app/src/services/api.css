@@ -17,6 +17,10 @@ h1 {
 
 }
 
+.image-button-container {
+    height: 100%;
+}
+
 .image-container {
     /* margin: 2%; */
     border-radius: 5px;
@@ -36,9 +40,9 @@ h1 {
     border-width: .5px;
     border-color: #39bf66;
     box-shadow: 0px 5px 5px #39bf66;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .food-image {
@@ -91,14 +95,15 @@ input[type="file"] {
 
     .image-button-container {
         flex-direction: column; /* Keeps the image and button stacked */
-        align-items: flex-start; /* Align items to the left */
-        width: 50%; /* Half-width for image and button */
+        /* align-items: flex-start;  */
+        width: 45%; 
+        /* height: 100%; */
     }
 
     .analysis-container {
         width: 50%; /* Half-width for analysis information */
         text-align: left; /* Left-align the analysis text */
-        padding-left: 1rem; /* Adds some space between the two sections */
+        padding-left: 1rem; 
     }
 
     /* Optional: To prevent text from overflowing and make it more readable */
