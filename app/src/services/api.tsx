@@ -94,6 +94,7 @@ const Api: React.FC = () => {
     return (
         <div className="container">
             <h1>Food Analysis App</h1>
+            <p>Upload or take a photo of your food and we will provide calories and other nutritional details!</p>
                 <div className='functionality-container'>  
 
                     <div className="image-container">
@@ -105,7 +106,7 @@ const Api: React.FC = () => {
                     </div>   
 
                     <label className="custom-file-upload">
-                        Choose File
+                        Upload Photo
                         <input type="file" accept="image/*" onChange={handleImageUpload} />
                     </label>     
 
